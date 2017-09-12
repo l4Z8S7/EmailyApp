@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import Payments from './Payments';
 
 class Header extends Component {
@@ -11,6 +11,7 @@ class Header extends Component {
 			case false:
 				return <li><a href="/auth/google">Login with Google</a></li>;
 			default:
+				this.props.history.push('/surveys');
 				return [
 					<li key="1"><Payments /></li>,
 					<li key="2" style={{margin: "0 10px"}}>Credits: {this.props.auth.credits}</li>,
@@ -41,4 +42,4 @@ function mapStateToProps({auth}) {
 	return {auth};
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withRouter(Header));
