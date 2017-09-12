@@ -4,11 +4,6 @@ import {FETCH_USER, FETCH_SURVEYS} from './types';
 export const fetchUser = () => async dispatch => {
 	const res = await axios.get('/api/current_user');
 	dispatch({type: FETCH_USER, payload: res.data});
-	// fetch('/api/current_user', {method: 'GET', credentials: 'include'})
-	// .then(res => res.json())
-	// .then(json => {
-	// 	dispatch({type: FETCH_USER, payload: json});
-	// });
 }
 
 export const handleToken = token => async dispatch => {
@@ -24,5 +19,6 @@ export const submitSurvey = (values, history) => async dispatch => {
 
 export const fetchSurveys = () => async dispatch => {
 	const res = await axios.get('/api/surveys');
+	console.log(res.data);
 	dispatch({type: FETCH_SURVEYS, payload: res.data});
 }
